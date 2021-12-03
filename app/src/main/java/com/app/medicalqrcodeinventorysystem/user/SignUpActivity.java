@@ -14,7 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.app.medicalqrcodeinventorysystem.Environment;
+import com.app.medicalqrcodeinventorysystem.environment.Environment;
 import com.app.medicalqrcodeinventorysystem.MainActivity;
 import com.app.medicalqrcodeinventorysystem.R;
 
@@ -32,6 +32,16 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        if( getSupportActionBar() != null ) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     public void register(View view) {

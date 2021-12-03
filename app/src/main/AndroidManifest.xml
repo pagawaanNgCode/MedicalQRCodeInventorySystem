@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.medicalqrcodeinventorysystem">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,9 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalQRCodeInventorySystem"
-        android:usesCleartextTraffic="true"
-        >
-        <activity android:name=".user.SignUpActivity"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".equipments.ViewEquipmentActivity"></activity>
+        <activity android:name=".equipments.EquipmentListActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".borrowreturn.BorrowLandingActivity" />
+        <activity android:name=".borrowreturn.ReturnLandingActivity" />
+        <activity android:name=".borrowreturn.BorrowEquipmentActivity" />
+        <activity android:name=".borrowreturn.ReturnEquipmentActivity" />
+        <activity android:name=".landing.LandingActivity" />
+        <activity android:name=".user.SignUpActivity" />
+        <activity android:name=".scanner.QRCodeScannerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

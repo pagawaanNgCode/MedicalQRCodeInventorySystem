@@ -14,6 +14,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.medicalqrcodeinventorysystem.dto.UserDTO;
+import com.app.medicalqrcodeinventorysystem.environment.Environment;
+import com.app.medicalqrcodeinventorysystem.equipments.EquipmentListActivity;
+import com.app.medicalqrcodeinventorysystem.landing.LandingActivity;
+import com.app.medicalqrcodeinventorysystem.session.SessionManager;
 import com.app.medicalqrcodeinventorysystem.user.SignUpActivity;
 
 import org.apache.commons.codec.binary.Hex;
@@ -28,10 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView errorMessageTextView;
 
+    private SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sessionManager = new SessionManager(getApplicationContext());
         errorMessageTextView = findViewById(R.id.errorLoginTextView);
     }
 
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonResponse = new JSONObject(response);
                         if( jsonResponse.getBoolean("success") ) {
                             errorMessageTextView.setText("");
-                            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
 //                            JSONObject userInfo = jsonResponse.getJSONObject("user_info");
 //                            UserDTO userDTO = new UserDTO(userInfo);
@@ -68,9 +76,14 @@ public class MainActivity extends AppCompatActivity {
 //                                userDTO.setAddress(null);
 //                                landingPageIntent = new Intent(getApplicationContext(), ConfirmAddressActivity.class);
 //                            }
-//
-//                            sessionManager.createLoginSession(userDTO);
-//                            startActivity(landingPageIntent);
+
+                            // TODO user info
+                            String userId = jsonResponse.getString("user_id");
+                            UserDTO userDTO = new UserDTO(userId);
+                            sessionManager.createLoginSession( userDTO );
+
+                            Intent landingPageIntent = new Intent(getApplicationContext(), EquipmentListActivity.class);
+                            startActivity(landingPageIntent);
                         }else {
                             errorMessageTextView.setText("Invalid username or password.");
                         }
