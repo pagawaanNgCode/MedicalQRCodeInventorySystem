@@ -22,6 +22,7 @@ import com.app.medicalqrcodeinventorysystem.borrowreturn.BorrowEquipmentActivity
 import com.app.medicalqrcodeinventorysystem.borrowreturn.ReturnEquipmentActivity;
 import com.app.medicalqrcodeinventorysystem.dto.EquipmentDTO;
 import com.app.medicalqrcodeinventorysystem.environment.Environment;
+import com.app.medicalqrcodeinventorysystem.landing.BorrowOrReportActivity;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 
@@ -77,18 +78,16 @@ public class QRCodeScannerActivity extends AppCompatActivity {
 
                                 Log.i("GetEquipment", Objects.isNull(equipmentObject.getInt("status_id"))+"");
                                 if( equipmentObject.getInt("status_id") == 1 ) {
-                                    Intent borrowIntent = new Intent(getApplicationContext(), BorrowEquipmentActivity.class);
-                                    borrowIntent.putExtra("equipment_id", equipmentDTO.getEquipmentId());
-                                    borrowIntent.putExtra("model_number", equipmentDTO.getModelNumber());
-                                    borrowIntent.putExtra("equipment_type", equipmentDTO.getEquipmentType());
-                                    borrowIntent.putExtra("designation_name", equipmentDTO.getDesignationName());
-                                    startActivityForResult(borrowIntent, 100);
+                                    Intent borrowOrReportIntent = new Intent(getApplicationContext(), BorrowOrReportActivity.class);
+                                    borrowOrReportIntent.putExtra("equipment_id", equipmentDTO.getEquipmentId());
+                                    borrowOrReportIntent.putExtra("model_number", equipmentDTO.getModelNumber());
+                                    borrowOrReportIntent.putExtra("equipment_type", equipmentDTO.getEquipmentType());
+                                    borrowOrReportIntent.putExtra("designation_name", equipmentDTO.getDesignationName());
+                                    startActivityForResult(borrowOrReportIntent, 100);
                                 }else {
-
                                     GetBorrowedEquipmentTask getBorrowedEquipmentTask = new GetBorrowedEquipmentTask(getApplicationContext(), equipmentDTO);
                                     getBorrowedEquipmentTask.execute();
                                 }
-
                             }else {
                                 Toast.makeText(this, "Invalid QR Code/Data", Toast.LENGTH_SHORT).show();;
                             }

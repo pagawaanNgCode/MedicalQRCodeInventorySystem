@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,10 +29,13 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private TextView errorMessageTxtView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        errorMessageTxtView = findViewById(R.id.errorMessageTxtView);
 
         if( getSupportActionBar() != null ) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
@@ -51,26 +55,24 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        EditText employeeIdTxt = findViewById(R.id.employeeIdTxt);
+        EditText employeeEmailTxt = findViewById(R.id.employeeIdTxt);
         EditText firstName = findViewById(R.id.firstNameTxt);
         EditText lastNameTxt = findViewById(R.id.lastNameTxt);
         EditText passwordText = findViewById(R.id.passwordSignUpTxt);
 
-        signUp(employeeIdTxt.getEditableText().toString(), firstName.getEditableText().toString(), lastNameTxt.getEditableText().toString(),
+        signUp(employeeEmailTxt.getEditableText().toString(), firstName.getEditableText().toString(), lastNameTxt.getEditableText().toString(),
                 passwordText.getEditableText().toString());
+
     }
 
-    private void signUp( final String employeeId, final String firstName, final String lastName, final String password ) {
+    private void signUp( final String email, final String firstName, final String lastName, final String password ) {
         String postUrl = Environment.ROOT_PATH + "/api/v1/employee-sign-up";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, postUrl,
                 response -> {
                     Log.i("SignUpResponse", response);
-//                        Intent landingPageIntent = new Intent(getApplicationContext(), QRCodeScanSuccessActivity.class);
-//                        Log.i("@@ accountID: ", accountID);
-//                        landingPageIntent.putExtra("accountID", accountID);
-//                        startActivity(landingPageIntent);
+
 
                     try {
                         JSONObject responseObject = new JSONObject(response);
@@ -81,6 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
                             redirectToLogin();
                         }else {
+                            errorMessageTxtView.setText(responseObject.getString("errors"));
                             Toast.makeText(this, responseObject.getString("errors"), Toast.LENGTH_SHORT).show();
                         }
 
@@ -88,15 +91,15 @@ public class SignUpActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
+
                 }, Throwable::printStackTrace){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
-                params.put("employee_id", employeeId);
+                params.put("email", email);
                 params.put("first_name", firstName);
                 params.put("last_name", lastName);
-                params.put("password", new String(Hex.encodeHex(DigestUtils.sha1(password))));
+                params.put("password", new String(Hex.encodeHex(DigestUtils.sha1(password))) );
                 return params;
             }
         };

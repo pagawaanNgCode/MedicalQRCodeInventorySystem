@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalQRCodeInventorySystem"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".report.ReportEquipmentActivity"></activity>
+        <activity android:name=".landing.ReportLandingActivity" />
+        <activity android:name=".landing.BorrowOrReportActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".equipments.ViewEquipmentActivity" />
         <activity android:name=".equipments.EquipmentListActivity" />
         <activity android:name=".TestActivity" />
@@ -24,6 +27,7 @@
         <activity android:name=".landing.LandingActivity" />
         <activity android:name=".user.SignUpActivity" />
         <activity android:name=".scanner.QRCodeScannerActivity" />
+        <activity android:name=".util.ActivityDispatcherUtil" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

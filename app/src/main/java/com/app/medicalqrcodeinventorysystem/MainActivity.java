@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void validateLogin(final String employeeId, final String password) {
+    private void validateLogin(final String email, final String password) {
         String postUrl = Environment.ROOT_PATH + "/api/v1/validate-employee-login";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -82,10 +82,11 @@ public class MainActivity extends AppCompatActivity {
                             UserDTO userDTO = new UserDTO(userId);
                             sessionManager.createLoginSession( userDTO );
 
+                            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
                             Intent landingPageIntent = new Intent(getApplicationContext(), EquipmentListActivity.class);
                             startActivity(landingPageIntent);
                         }else {
-                            errorMessageTextView.setText("Invalid username or password.");
+                            errorMessageTextView.setText("Invalid email or password.");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
-                params.put("employee_id", employeeId);
+                params.put("email", email);
                 params.put("password", new String(Hex.encodeHex(DigestUtils.sha1(password))));
                 return params;
             }

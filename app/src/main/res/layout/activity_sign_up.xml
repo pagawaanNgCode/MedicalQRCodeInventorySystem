@@ -20,61 +20,72 @@
         app:layout_constraintVertical_bias="0.007"
          />
 
-    <EditText
-        android:id="@+id/passwordSignUpTxt"
-        android:layout_width="328dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="Password"
-        android:textColorHint="@color/white"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="331dp"
-        android:layout_height="53dp"
+        android:layout_width="288dp"
+        android:layout_height="35dp"
         android:gravity="center"
         android:text="Sign Up"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="34sp"
+        android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintVertical_bias="0.189" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/errorMessageTxtView"
         android:layout_width="331dp"
         android:layout_height="34dp"
         android:gravity="center"
-        android:text="Create an account to get started."
-        android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@android:color/holo_red_light"
         android:textColorHint="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.328" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="331dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="Create an account to get started."
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.251" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="223dp"
+        android:layout_height="53dp"
+        android:onClick="register"
+        android:text="Sign Up"
+        app:iconTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973" />
 
     <EditText
-        android:id="@+id/employeeIdTxt"
+        android:id="@+id/lastNameTxt"
         android:layout_width="328dp"
         android:layout_height="55dp"
         android:ems="10"
-        android:hint="Employee ID"
+        android:hint="Last Name"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -84,7 +95,37 @@
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintVertical_bias="0.652" />
+
+    <CheckBox
+        android:id="@+id/agreeCBox"
+        android:layout_width="321dp"
+        android:layout_height="40dp"
+        android:text="I agree to the Terms and Conditions"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859" />
+
+    <EditText
+        android:id="@+id/passwordSignUpTxt"
+        android:layout_width="328dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.764" />
 
     <EditText
         android:id="@+id/firstNameTxt"
@@ -100,49 +141,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534" />
 
     <EditText
-        android:id="@+id/lastNameTxt"
+        android:id="@+id/employeeIdTxt"
         android:layout_width="328dp"
         android:layout_height="55dp"
         android:ems="10"
-        android:hint="Last Name"
-        android:textColorHint="@color/white"
+        android:hint="Email"
         android:inputType="textPersonName"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
-
-    <CheckBox
-        android:id="@+id/agreeCBox"
-        android:layout_width="321dp"
-        android:layout_height="40dp"
-        android:textColor="@color/white"
-        android:text="I agree to the Terms and Conditions"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
-
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="223dp"
-        android:layout_height="53dp"
-        android:onClick="register"
-        android:text="Sign Up"
-        app:iconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
